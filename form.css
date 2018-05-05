@@ -1,0 +1,87 @@
+body {
+  height: 100%;
+}
+h1 {
+  margin-top: 20px
+}
+h5 {
+  margin-top: 20px;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: 16px;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  transition: 0.5s;
+}
+.reveal-if-active label {
+  display: block;
+  margin: 0 0 3px 0;
+}
+.reveal-if-active input[type="text"] {
+  width: 100%;
+}
+input[type="radio"]:checked ~ .reveal-if-active, input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px;
+  padding: 10px 20px;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  overflow: visible;
+}
+
+.form-control {
+  width: 27%;
+  margin: 20px 50px 20px 0px;
+}
+
+.form-check {
+  margin-left: 150px;
+  transform: scale(1.25);
+}
+
+.form-check-label {
+  margin: 10px;
+}
+
+.btn {
+  text-align:center;
+  padding-top: 0.2em;
+  color: white;
+  font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px; height: 60px;
+  margin-left: 60px;
+  background-color: #00be73;
+}
+
+#circles {
+  height: 100%;
+  position: relative;
+}
+
+#circles ul li {
+ text-align:center;
+ padding-top: 1.6em;
+ color: white;
+ font-size: 64px;
+  position: absolute;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 800px;
+	border-radius: 800px;
+    list-style-type:none;
+  	background-color: #41BEFF;
+	-moz-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.65);
+	-webkit-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.65);
+	box-shadow:inset 0px 1px 8px rgba(0,0,0,0.3);
+
+  width: 1200px; height: 1200px;
+  bottom: 10%; right: -1000px;
+  background-color: #5f19aa;
+}
+
+li:hover{opacity:0.9;}

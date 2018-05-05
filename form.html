@@ -1,0 +1,215 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MegaFon CJM</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="form.css">
+  </head>
+
+  <body>
+    <div class="container" style="height: 100%">
+      <div id="circles" class="row1">
+          <h1 class="text-center">Создание CJM</h1>
+          <div class="form-group">
+            <h5>Название услуги:</h5>
+            <input type="text" class="form-control" id="name">
+          </div>
+
+          <h5>Услуга предоставляется по акции?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="choice-animals" id="choice-animals-dogs" required>
+              <label >Да</label>
+              <div class="reveal-if-active">
+                <label for="which-dog">Сколько дней действует акция?</label>
+                <input class="form-control" style="margin-top: 0" type="text" id="which-dog" name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs">
+              </div>
+            </label>
+          </div>
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="choice-animals" id="choice-animals-cats">
+              <label>Нет</label>
+            </label>
+          </div>
+
+
+          <h5>Как часто происходит оплата услуги?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="costRadios" value="costDay">
+              Ежемесячно
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="costRadios" value="costWeek">
+              Еженедельно
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="costRadios" value="costMonth">
+              Ежедневно
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="costRadios" value="costFree">
+              Услуга бесплатна
+            </label>
+          </div>
+
+          <h5>Откуда клиент узнает об услуге?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Опция предустановлена
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              С помощью рекламы
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Приходит смс с предложением
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Оператор звонит клиенту и предлагает
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Предлагают в магазине
+            </label>
+          </div>
+
+          <h5>Как подключить услугу?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Через личный кабинет
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              В салонах мегафона
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Звонком в контактный центр
+            </label>
+          </div>
+
+          <h5>Как отключить услугу?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Через личный кабинет
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              В салонах мегафона
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Звонком в контактный центр
+            </label>
+          </div>
+
+          <h5>Где можно найти информацию об услуге?</h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              На сайте Мегафона
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              В салонах Мегафона
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="">
+              Звонком в контактный центр
+            </label>
+          </div>
+
+          <h5>Регион действия: </h5>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="radiusRadios" value="option1">
+              Домашний регион
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="radiusRadios" value="option2">
+              На всей территории РФ
+            </label>
+          </div>
+
+          <button type="button" class="btn btn-success">Создать</button>
+
+          <ul>
+            <li>
+            </li>
+          </ul>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        var FormStuff = {
+
+          init: function() {
+            this.applyConditionalRequired();
+            this.bindUIActions();
+          },
+
+          bindUIActions: function() {
+            $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+          },
+
+          applyConditionalRequired: function() {
+
+            $(".require-if-active").each(function() {
+              var el = $(this);
+              if ($(el.data("require-pair")).is(":checked")) {
+                el.prop("required", true);
+              } else {
+                el.prop("required", false);
+              }
+            });
+
+          }
+          };
+          $( document ).ready(function() {
+                  FormStuff.init();
+          });
+    </script>
+  </body>
+</html>
