@@ -15,24 +15,24 @@
           <h1 class="text-center">Создание CJM</h1>
           <div class="form-group">
             <h5>Название услуги:</h5>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" value="">
           </div>
 
           <h5>Услуга предоставляется по акции?</h5>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="choice-animals" id="choice-animals-dogs" required>
+              <input class="form-check-input" type="radio" name="stock" id="choice-animals-dogs" required value=true>
               <label >Да</label>
               <div class="reveal-if-active">
                 <label for="which-dog">Сколько дней действует акция?</label>
-                <input class="form-control" style="margin-top: 0" type="text" id="which-dog" name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs">
+                <input id="days" class="form-control" style="margin-top: 0" type="text" id="which-dog" name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs" value="0">
               </div>
             </label>
           </div>
 
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="choice-animals" id="choice-animals-cats">
+              <input class="form-check-input" type="radio" name="stock" id="choice-animals-cats" value=false>
               <label>Нет</label>
             </label>
           </div>
@@ -41,25 +41,25 @@
           <h5>Как часто происходит оплата услуги?</h5>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="costDay">
+              <input class="form-check-input" type="radio" name="costRadios" value="daily">
               Ежемесячно
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="costWeek">
+              <input class="form-check-input" type="radio" name="costRadios" value="weekly">
               Еженедельно
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="costMonth">
+              <input class="form-check-input" type="radio" name="costRadios" value="monthly">
               Ежедневно
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="costFree">
+              <input class="form-check-input" type="radio" name="costRadios" value="free">
               Услуга бесплатна
             </label>
           </div>
@@ -67,31 +67,31 @@
           <h5>Откуда клиент узнает об услуге?</h5>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="attract" type="checkbox" value="alreadyInstalled">
               Опция предустановлена
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="attract" type="checkbox" value="ad">
               С помощью рекламы
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="attract" type="checkbox" value="sms">
               Приходит смс с предложением
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="attract" type="checkbox" value="operatorCall">
               Оператор звонит клиенту и предлагает
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="attract" type="checkbox" value="shop">
               Предлагают в магазине
             </label>
           </div>
@@ -119,19 +119,19 @@
           <h5>Как отключить услугу?</h5>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="disabled" type="checkbox" value="lk">
               Через личный кабинет
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="disabled" type="checkbox" value="callCenter">
               В салонах мегафона
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="disabled" type="checkbox" value="shop">
               Звонком в контактный центр
             </label>
           </div>
@@ -139,19 +139,19 @@
           <h5>Где можно найти информацию об услуге?</h5>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="whereInfo" type="checkbox" value="lk">
               На сайте Мегафона
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="whereInfo" type="checkbox" value="shop">
               В салонах Мегафона
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
+              <input class="form-check-input" name="whereInfo" type="checkbox" value="callCenter">
               Звонком в контактный центр
             </label>
           </div>
@@ -170,8 +170,7 @@
             </label>
           </div>
 
-          <button type="button" class="btn btn-success">Создать</button>
-
+          <button id="elem" type="button" class="btn btn-success">Создать</button>
           <ul>
             <li>
             </li>
@@ -184,7 +183,6 @@
 
     <script>
         var FormStuff = {
-
           init: function() {
             this.applyConditionalRequired();
             this.bindUIActions();
@@ -207,9 +205,74 @@
 
           }
           };
-          $( document ).ready(function() {
-                  FormStuff.init();
-          });
+        $( document ).ready(function() {
+          FormStuff.init();
+          data = elem.onclick = function() {
+
+            let howPaid = "";
+            let radios = document.getElementsByName('costRadios');
+            for (let i = 0, length = radios.length; i < length; i++){
+              if(radios[i].checked) {
+                howPaid = radios[i].value;
+              }
+            }
+            console.log("howPaid", howPaid);
+
+            let isPromo = false;
+            let promos = document.getElementsByName('stock');
+            for (let i = 0, length = promos.length; i < length; i++){
+              if(promos[i].checked) {
+                isPromo = (promos[i].value == 'true');
+              }
+            }
+            console.log("isPromo", isPromo);
+
+            let howDisable = [];
+            let disables = document.getElementsByName('disabled');
+            for (let i = 0, length = disables.length; i < length; i++) {
+              if(disables[i].checked) {
+                howDisable.push(disables[i].value);
+              }
+            }
+            console.log("howDisable", howDisable);
+
+            let whereInfo = [];
+            let whereInfos = document.getElementsByName('whereInfo');
+            for (let i = 0, length = whereInfos.length; i < length; i++) {
+              if(whereInfos[i].checked) {
+                whereInfo.push(whereInfos[i].value);
+              }
+            }
+            console.log("whereInfo", whereInfo);
+
+            let attractionChannel = [];
+            let attract = document.getElementsByName('attract');
+            for (let i = 0, length=attract.length; i < length; i++) {
+              if(attract[i].checked) {
+                attractionChannel.push(attract[i].value);
+              }
+            }
+            console.log("attractionChannel", attractionChannel);
+
+            let name = document.getElementById('name').value;
+            console.log("name", name);
+
+            let demoPeriod = parseInt(document.getElementById('days').value);
+            console.log("demoPeriod", demoPeriod);
+            let formData = {
+                howPaid: howPaid,
+                isPromo: isPromo,
+                howDisable: howDisable,
+                whereInfo: whereInfo,
+                attractionChannel: attractionChannel,
+                name: name,
+                demoPeriod: demoPeriod
+            };
+            console.log("formData", formData, typeof(formData.isPromo));
+            return formData;
+          };
+        });
+
     </script>
   </body>
 </html>
