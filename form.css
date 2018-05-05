@@ -47,76 +47,41 @@ input[type="radio"]:checked ~ .reveal-if-active, input[type="checkbox"]:checked 
   margin: 10px;
 }
 
+.btn {
+  text-align:center;
+  padding-top: 0.2em;
+  color: white;
+  font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 200px; height: 60px;
+  margin-left: 60px;
+  background-color: #00be73;
+}
+
 #circles {
   height: 100%;
   position: relative;
 }
 
 #circles ul li {
-  	text-indent: -9999px; position: absolute;
+ text-align:center;
+ padding-top: 1.6em;
+ color: white;
+ font-size: 64px;
+  position: absolute;
 	-moz-border-radius: 50%;
-	-webkit-border-radius: 390px;
-	border-radius: 390px;
+	-webkit-border-radius: 800px;
+	border-radius: 800px;
     list-style-type:none;
   	background-color: #41BEFF;
 	-moz-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.65);
 	-webkit-box-shadow:inset 0px 1px 8px rgba(0,0,0,0.65);
 	box-shadow:inset 0px 1px 8px rgba(0,0,0,0.3);
-}
 
-#circles ul li:nth-child(1) {
-  width: 180px; height: 180px;
-  bottom: -150px; left: 562px;
-  background-color:#64dcaa;
-}
-#circles ul li:nth-child(9) {
-  width: 300px; height: 300px;
-  bottom: -250px; left: 50px;
-  background-color: #64dcaa;
-}
-
-#circles ul li:nth-child(6) {
-  width: 400px; height: 400px;
-  bottom: -520px; left: 490px;
-  background-color: #00be73;
-}
-#circles ul li:nth-child(2) {
-  width: 235px; height: 235px;
-  bottom: -150px; left: 280px;
-  background-color: #32d291;
-}
-
-#circles ul li:nth-child(3) {
-  width: 125px; height: 125px;
-  bottom: -150px; left: 460px;
-  background-color: #64dcaa;
-}
-#circles ul li:nth-child(10) {
-  width: 150px; height: 150px;
-  bottom: -70px; left: 10px;
-  background-color: #64dcaa;
-}
-
-#circles ul li:nth-child(4) {
-  width: 175px; height: 175px;
-  bottom: -250px; left: 275px;
-  background-color: #00be73;
-}
-
-#circles ul li:nth-child(5) {
-  width: 160px; height: 160px;
-  bottom: -10px; left: 100px;
-  background-color: #00be73;
-}
-#circles ul li:nth-child(8) {
-  width: 220px; height: 220px;
-  bottom: -250px; left: 700px;
-  background-color: #32d291;
-}
-#circles ul li:nth-child(7) {
-  width: 290px; height: 290px;
-  bottom: -30px; left: 480px;
-  background-color: #32d291;
+  width: 1200px; height: 1200px;
+  bottom: 10%; right: -1000px;
+  background-color: #5f19aa;
 }
 
 li:hover{opacity:0.9;}
