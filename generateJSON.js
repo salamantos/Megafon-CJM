@@ -12,9 +12,20 @@ function getJSON(params) {
         attract = {name: "Узнаёт/подключает", variants: []};
     }
     if (params.attractionChannel.includes("shop")) {
-        attract.variants.push(templates.shopAttract)
+        let temp = templates.shopAttract;
+        String.prototype.splice = function (idx, rem, str) {
+            return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+        };
+        temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        attract.variants.push(temp);
     }
     if (params.isPromo) {
+        let temp = templates.promoAttract;
+        String.prototype.splice = function (idx, rem, str) {
+            return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+        };
+        temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        attract.variants.push(temp);
         attract.variants.push(templates.promoAttract);
         connection.variants.push(templates.paidConnection);
         connection.variants.push(templates.notPaidConnection);
