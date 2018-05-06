@@ -16,16 +16,15 @@ function getJSON(params) {
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
-        temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
-        attract.variants.push(temp);
+        let teperer = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
     }
     if (params.isPromo) {
         let temp = templates.promoAttract;
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
-        temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
-        attract.variants.push(temp);
+        let teperer = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        attract.variants.push(teperer);
         attract.variants.push(templates.promoAttract);
         connection.variants.push(templates.paidConnection);
         connection.variants.push(templates.notPaidConnection);
