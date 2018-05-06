@@ -102,19 +102,19 @@
         <h5>Как подключить услугу?</h5>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="">
+                <input class="form-check-input" name="abled" type="checkbox" value="lk">
                 Через личный кабинет
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="">
+                <input class="form-check-input" name="abled" type="checkbox" value="callCenter">
                 В салонах мегафона
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="">
+                <input class="form-check-input" name="abled" type="checkbox" value="shop">
                 Звонком в контактный центр
             </label>
         </div>
@@ -162,13 +162,13 @@
         <h5>Регион действия: </h5>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radiusRadios" value="option1">
+                <input class="form-check-input" type="radio" name="radius" value=true>
                 Домашний регион
             </label>
         </div>
         <div class="form-check">
             <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="radiusRadios" value="option2">
+                <input class="form-check-input" type="radio" name="radius" value=false>
                 На всей территории РФ
             </label>
         </div>
@@ -239,6 +239,25 @@
             }
             console.log("isPromo", isPromo);
 
+            let radius = false;
+            let rad = document.getElementsByName('radius');
+            for (let i = 0, length = rad.length; i < length; i++) {
+                if (rad[i].checked) {
+                    radius = (rad[i].value == 'true');
+                }
+            }
+            console.log("radius", radius);
+
+
+
+            let howAble = [];
+            let ables = document.getElementsByName('abled');
+            for (let i = 0, length=ables.length; i < length; i++) {
+                if(ables[i].checked) {
+                    howAble.push(ables[i].value);
+                }
+            }
+
             let howDisable = [];
             let disables = document.getElementsByName('disabled');
             for (let i = 0, length = disables.length; i < length; i++) {
@@ -274,10 +293,12 @@
             let formData = {
                 howPaid: howPaid,
                 isPromo: isPromo,
+                howAble: howAble,
                 howDisable: howDisable,
                 whereInfo: whereInfo,
                 attractionChannel: attractionChannel,
                 name: name,
+                radius: radius,
                 demoPeriod: demoPeriod
             };
 

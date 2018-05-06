@@ -34,7 +34,7 @@ function getJSON(params) {
     }
     if (params.attractionChannel.includes("alreadyInstalled")) {
         let line = [];
-        line.push(steps.shopAttract);
+        line.push(steps.stockAttract);
         line.push(sms);
         attract.variants.push(line);
     }
@@ -52,14 +52,37 @@ function getJSON(params) {
     }
     if (params.attractionChannel.includes("sms")) {
         let line = [];
-        line.push(steps.operatorCallAttract);
+        line.push(steps.smsCallAttract);
+        line.push(sms);
+        attract.variants.push(line);
+    }
+    if (params.attractionChannel.includes("shop")) {
+        let line = [];
+        line.push(steps.shopAttract);
         line.push(sms);
         attract.variants.push(line);
     }
 
     columns.push(attract);
 
-    // Использует
+    let enter = {name: "Подключает", variants: []};
+    let enterInfo = "Подключение возможно";
+    if (params.howAble.includes("lk")) {
+        enterInfo += "\nв личном кабинете"
+    }
+    if (params.howAble.includes("callCenter")) {
+        enterInfo += "\nв коллцентре"
+    }
+    if (params.howAble.includes("shop")) {
+        enterInfo += "\nв магазине"
+    }
+    if (params.howAble.length > 0) {
+        let temp = steps.ableFunc;
+        temp.info = enterInfo;
+        enter.variants.push([temp]);
+    }
+    columns.push(enter);
+
     let use;
     use = {name: "Использует", variants: []};
     let whereInfo = "Управление возможно в следующих местах: ";
@@ -75,29 +98,47 @@ function getJSON(params) {
     if (params.whereInfo.length > 0) {
         let temp = steps.waysWhereInfo;
         temp.info = whereInfo;
-        use.variants.push(temp);
-
+        use.variants.push([temp]);
     }
+
     if (params.howPaid !== "free") {
-       // use.variants.push(steps.days10WhereInfo)
-        use.variants.push(steps.smsTime);
-        use.variants.push(steps.smsPayed);
+        let line = [];
+        line.push(steps.smsPayed);
+        use.variants.push(line);
     }
     columns.push(use);
 
     // Реакция на изменения
-    let reaction;
+    let  reaction = {name: "Реакция на изменения", variants: []};
     if (params.howPaid !== "free") {
-        reaction = {name: "Реакция на изменения", variants: []};
-        reaction.variants.push(steps.PaidReaction);
-        reaction.variants.push(steps.CallReaction);
-        reaction.variants.push(steps.DisableReaction);
+        reaction.variants.push([steps.PaidReaction]);
+        reaction.variants.push([steps.CallReaction]);
+        reaction.variants.push([steps.DisableReaction]);
+    }
+    console.log("Radius", params.radius);
+    if (params.radius) {
+        reaction.variants.push([steps.changeRadius]);
     }
     columns.push(reaction);
 
     // Отключает
-    columns.disconnect = {name: "Отключает", variants: []};
-
+    let exit = columns.disconnect = {name: "Отключает", variants: []};
+    let disableInfo = "Отключение возможно";
+    if (params.howDisable.includes("lk")) {
+        disableInfo += "\nв личном кабинете"
+    }
+    if (params.howDisable.includes("callCenter")) {
+        disableInfo += "\nв коллцентре"
+    }
+    if (params.howDisable.includes("shop")) {
+        disableInfo += "\nв магазине"
+    }
+    if (params.howDisable.length > 0) {
+        let temp = steps.disableFunc;
+        temp.info = disableInfo;
+        exit.variants.push([temp]);
+    }
+    columns.push(exit);
     columns = {"states": columns, name: params.name};
     return JSON.stringify(columns);
 }
