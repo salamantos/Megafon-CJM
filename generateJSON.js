@@ -62,7 +62,7 @@ function getJSON(params) {
     }
     if (params.whereInfo.length > 0) {
         let temp = templates.waysWhereInfo;
-        temp.steps[0].info = whereInfo;
+        temp.info = whereInfo;
         use.variants.push(temp);
 
     }
