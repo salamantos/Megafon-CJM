@@ -21,13 +21,19 @@ function generateStep(stepData) {
   } 
 
   step.append(stepBody);
-  var addButton = $('<button>', { class: "btn btn-light", text: '+'}));
+  var addButton = $('<button>', { class: "btn btn-light", text: '+'});
+  addButton.click(function(evt) {
+    addStep($(this).parent());
+    updateStep($(this).parent()[0]);
+  });
+  step.append(addButton);
   return step;
 }
 
 function generateVariant(variantData) {
+  console.log(variantData);
   var variant = $('<div>', { class: "d-flex flex-row align-items-center variant" })
-  variantData.steps.forEach(function (stepData) {
+  variantData.forEach(function (stepData) {
     variant.append(generateStep(stepData));
   });
   return variant;
@@ -55,113 +61,6 @@ function generateApp(appData) {
   });
 }
 
-appData = {
-  name: "Кто звонил+",
-  states: [ 
-    {
-      name: "Узнает",
-      variants: [
-        {
-          steps: [
-            {
-              id: "1",
-              title: "Подключает услугу по акции",
-              icon: "fas fa-tag",
-            },
-            {
-              id: "2",
-              title: "Получает SMS с подтверждением",
-              icon: "far fa-comment-alt",
-              info: "SMS с информацией о платной опции приходит чрез X дней после подключения"
-            },
-          ]
-        },
-        {
-          steps: [
-            {
-              id: "3",
-              title: "Подключает новый ТП",
-              icon: "fas fa-cart-arrow-down",
-              info: "Клиент становится участником акции (нулевой профиль на ряде тарифов)"
-            },
-            {
-              id: "4",
-              title: "Получает SMS с описанием опции",
-              icon: "far fa-comment-alt",
-              info: "SMS с информацией о платной опции приходит чрез X дней после подключения"
-            },
-          ]
-        },
-      ]
-    },
-    {
-      name: "Использует",
-      variants: [
-        {
-          steps: [
-            {
-              id: "1",
-              title: "Пользуется опцией",
-              icon: "fa fa-mobile-alt",
-              info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            },
-            {
-              id: "2",
-              title: "За 10 дней получает SMS уведомление",
-              icon: "far fa-comment-alt",
-              smsInfo: "SMS с уведомлением об окончании акции и информацией об условиях опции",
-              info: "SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»",
-            },
-            {
-              id: "3",
-              title: "Услуга становится платной / отключается с заменой на бесплатную",
-              icon: "far fa-money-bill-alt",
-              danger: "За 10 дней абоненты могут забыть об окончании акции. Рекомендуется еще раз уведомить абонента в день окончания акции",
-            },
-          ]
-        },
-      ]
-    },
-    {
-      name: "Изменяет",
-      variants: [
-        {
-          steps: [
-            {
-              id: "1",
-              title: "Оставляет платную услугу",
-              icon: "far fa-money-bill-alt",
-              smsInfo: "SMS с подтверждением окончания акции",
-            },
-          ]
-        },
-        {
-          steps: [
-            {
-              id: "2",
-              title: "Звонит в КЦ",
-              icon: "fas fa-phone",
-              danger: "Негативные реакции, если абонент забыл отключить опцию до окончания акции",
-            },
-          ]
-        },
-        {
-          steps: [
-            {
-              id: "3",
-              title: "Отключает пакет",
-              icon: "fas fa-ban",
-              info: "Отключение возможно через Личный кабинет, контактный центр, по команде",
-            },
-          ]
-        },
-      ]
-    }
-  ] 
-}
-
-
-
 function getHeaderValue() {
   var headerValue = $('input[name="titleRadios"]:checked').val();
   if (headerValue == 'other')
@@ -184,6 +83,7 @@ function updateHeader(header) {
 }
 
 function updateStep(step) {
+  console.log(step);
   $('#step-modal').modal('show');
   $('#step-title').val($(step).children('.step-title')[0].innerText);
   var iconValue = $(step).children('.fa, .fas, .far')[0].className;
@@ -246,6 +146,8 @@ function addState(evt) {
 function deleteState(evt) {
   $(evt.target).parent().remove();
 }
+
+var appData = {"states":[{"name":"Узнаёт","variants":[]},{"name":"Использует","variants":[[{"title":"За 10 дней получает SMS уведомление","icon":"far fa-comment-alt","info":"SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»","smsInfo":"SMS с уведомлением об окончании акции и информацией об условиях опции","danger":"","cnm":"Несколько дней назад вы подключили платную услугу. Пробный период заканчивается через X дней. Если хотите отключить услугу, вы можете сделать это в личном кабинете"},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит чрез X дней после подключения","smsInfo":"","danger":"","cnm":""}]]},{"name":"Реакция на изменения","variants":[[{"title":"Оставляет платную услугу","icon":"far fa-money-bill-alt","info":"","smsInfo":"SMS с подтверждением окончания акции","danger":"","cnm":"Спасибо за то, что остаись с нами и решили продолжить пользоваться услугой"}],[{"title":"Звонит в КЦ","icon":"fas fa-phone","info":"","smsInfo":"","danger":"Негативные реакции, если абонент забыл отключить опцию до окончания акции","cnm":""}],[{"title":"Отключает пакет","icon":"fas fa-ban","info":"Отключение возможно через Личный кабинет, контактный центр, по команде","smsInfo":"Сказать, что будем рады видеть еще","danger":"","cnm":"Нам жаль, что вы решили отключить нашу услугу. Мы будем работать над ее улучшением и надеемся, что вы когда-нибудь подключите ее снова"}]]}],"name":""}
 
 
 $('document').ready(function() {
