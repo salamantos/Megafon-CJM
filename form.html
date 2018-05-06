@@ -1,256 +1,267 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>MegaFon CJM</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="form.css">
-  </head>
+</head>
 
-  <body>
-    <div class="container" style="height: 100%">
-      <div id="circles" class="row1">
-          <h1 class="text-center">Создание CJM</h1>
-          <div class="form-group">
+<body>
+<div class="container" style="height: 100%">
+    <div id="circles" class="row1">
+        <h1 class="text-center">Создание CJM</h1>
+        <div class="form-group">
             <h5>Название услуги:</h5>
             <input type="text" class="form-control" id="name" value="">
-          </div>
-
-          <h5>Услуга предоставляется по акции?</h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Услуга предоставляется по акции?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="stock" id="choice-animals-dogs" required value=true>
-              <label >Да</label>
-              <div class="reveal-if-active">
-                <label for="which-dog">Сколько дней действует акция?</label>
-                <input id="days" class="form-control" style="margin-top: 0" type="text" id="which-dog" name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs" value="0">
-              </div>
+                <input class="form-check-input" type="radio" name="stock" id="choice-animals-dogs" required value=true>
+                <label>Да</label>
+                <div class="reveal-if-active">
+                    <label for="which-dog">Сколько дней действует акция?</label>
+                    <input id="days" class="form-control" style="margin-top: 0" type="text" id="which-dog"
+                           name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs"
+                           value="0">
+                </div>
             </label>
-          </div>
-
-          <div class="form-check">
+        </div>
+        
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="stock" id="choice-animals-cats" value=false>
-              <label>Нет</label>
+                <input class="form-check-input" type="radio" name="stock" id="choice-animals-cats" value=false>
+                <label>Нет</label>
             </label>
-          </div>
-
-
-          <h5>Как часто происходит оплата услуги?</h5>
-          <div class="form-check">
+        </div>
+        
+        
+        <h5>Как часто происходит оплата услуги?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="daily">
-              Ежемесячно
+                <input class="form-check-input" type="radio" name="costRadios" value="daily">
+                Ежемесячно
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="weekly">
-              Еженедельно
+                <input class="form-check-input" type="radio" name="costRadios" value="weekly">
+                Еженедельно
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="monthly">
-              Ежедневно
+                <input class="form-check-input" type="radio" name="costRadios" value="monthly">
+                Ежедневно
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="costRadios" value="free">
-              Услуга бесплатна
+                <input class="form-check-input" type="radio" name="costRadios" value="free">
+                Услуга бесплатна
             </label>
-          </div>
-
-          <h5>Откуда клиент узнает об услуге?</h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Откуда клиент узнает об услуге?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="attract" type="checkbox" value="alreadyInstalled">
-              Опция предустановлена
+                <input class="form-check-input" name="attract" type="checkbox" value="alreadyInstalled">
+                Опция предустановлена
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="attract" type="checkbox" value="ad">
-              С помощью рекламы
+                <input class="form-check-input" name="attract" type="checkbox" value="ad">
+                С помощью рекламы
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="attract" type="checkbox" value="sms">
-              Приходит смс с предложением
+                <input class="form-check-input" name="attract" type="checkbox" value="sms">
+                Приходит смс с предложением
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="attract" type="checkbox" value="operatorCall">
-              Оператор звонит клиенту и предлагает
+                <input class="form-check-input" name="attract" type="checkbox" value="operatorCall">
+                Оператор звонит клиенту и предлагает
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="attract" type="checkbox" value="shop">
-              Предлагают в магазине
+                <input class="form-check-input" name="attract" type="checkbox" value="shop">
+                Предлагают в магазине
             </label>
-          </div>
-
-          <h5>Как подключить услугу?</h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Как подключить услугу?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
-              Через личный кабинет
+                <input class="form-check-input" type="checkbox" value="">
+                Через личный кабинет
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
-              В салонах мегафона
+                <input class="form-check-input" type="checkbox" value="">
+                В салонах мегафона
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" value="">
-              Звонком в контактный центр
+                <input class="form-check-input" type="checkbox" value="">
+                Звонком в контактный центр
             </label>
-          </div>
-
-          <h5>Как отключить услугу?</h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Как отключить услугу?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="disabled" type="checkbox" value="lk">
-              Через личный кабинет
+                <input class="form-check-input" name="disabled" type="checkbox" value="lk">
+                Через личный кабинет
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="disabled" type="checkbox" value="callCenter">
-              В салонах мегафона
+                <input class="form-check-input" name="disabled" type="checkbox" value="callCenter">
+                В салонах мегафона
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="disabled" type="checkbox" value="shop">
-              Звонком в контактный центр
+                <input class="form-check-input" name="disabled" type="checkbox" value="shop">
+                Звонком в контактный центр
             </label>
-          </div>
-
-          <h5>Где можно найти информацию об услуге?</h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Где можно найти информацию об услуге?</h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="whereInfo" type="checkbox" value="lk">
-              На сайте Мегафона
+                <input class="form-check-input" name="whereInfo" type="checkbox" value="lk">
+                На сайте Мегафона
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="whereInfo" type="checkbox" value="shop">
-              В салонах Мегафона
+                <input class="form-check-input" name="whereInfo" type="checkbox" value="shop">
+                В салонах Мегафона
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" name="whereInfo" type="checkbox" value="callCenter">
-              Звонком в контактный центр
+                <input class="form-check-input" name="whereInfo" type="checkbox" value="callCenter">
+                Звонком в контактный центр
             </label>
-          </div>
-
-          <h5>Регион действия: </h5>
-          <div class="form-check">
+        </div>
+        
+        <h5>Регион действия: </h5>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="radiusRadios" value="option1">
-              Домашний регион
+                <input class="form-check-input" type="radio" name="radiusRadios" value="option1">
+                Домашний регион
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="radio" name="radiusRadios" value="option2">
-              На всей территории РФ
+                <input class="form-check-input" type="radio" name="radiusRadios" value="option2">
+                На всей территории РФ
             </label>
-          </div>
-
-          <button id="elem" type="button" class="btn btn-success">Создать</button>
-          <ul>
+        </div>
+        
+        <button id="elem" type="button" class="btn btn-success">Создать</button>
+        <a id="downloadAnchorElem" style="display:none"></a>
+        <ul>
             <li>
             </li>
-          </ul>
-      </div>
+        </ul>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
-    <script>
-        var FormStuff = {
-          init: function() {
+<script src="generateJSON.js"></script>
+<script>
+    var FormStuff = {
+        init: function () {
             this.applyConditionalRequired();
             this.bindUIActions();
-          },
+        },
 
-          bindUIActions: function() {
+        bindUIActions: function () {
             $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
-          },
+        },
 
-          applyConditionalRequired: function() {
+        applyConditionalRequired: function () {
 
-            $(".require-if-active").each(function() {
-              var el = $(this);
-              if ($(el.data("require-pair")).is(":checked")) {
-                el.prop("required", true);
-              } else {
-                el.prop("required", false);
-              }
+            $(".require-if-active").each(function () {
+                var el = $(this);
+                if ($(el.data("require-pair")).is(":checked")) {
+                    el.prop("required", true);
+                } else {
+                    el.prop("required", false);
+                }
             });
 
-          }
-          };
-        $( document ).ready(function() {
-          FormStuff.init();
-          data = elem.onclick = function() {
+        }
+    };
+    $(document).ready(function () {
+        FormStuff.init();
+        data = elem.onclick = function () {
 
             let howPaid = "";
             let radios = document.getElementsByName('costRadios');
-            for (let i = 0, length = radios.length; i < length; i++){
-              if(radios[i].checked) {
-                howPaid = radios[i].value;
-              }
+            for (let i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    howPaid = radios[i].value;
+                }
             }
             console.log("howPaid", howPaid);
 
             let isPromo = false;
             let promos = document.getElementsByName('stock');
-            for (let i = 0, length = promos.length; i < length; i++){
-              if(promos[i].checked) {
-                isPromo = (promos[i].value == 'true');
-              }
+            for (let i = 0, length = promos.length; i < length; i++) {
+                if (promos[i].checked) {
+                    isPromo = (promos[i].value == 'true');
+                }
             }
             console.log("isPromo", isPromo);
 
             let howDisable = [];
             let disables = document.getElementsByName('disabled');
             for (let i = 0, length = disables.length; i < length; i++) {
-              if(disables[i].checked) {
-                howDisable.push(disables[i].value);
-              }
+                if (disables[i].checked) {
+                    howDisable.push(disables[i].value);
+                }
             }
             console.log("howDisable", howDisable);
 
             let whereInfo = [];
             let whereInfos = document.getElementsByName('whereInfo');
             for (let i = 0, length = whereInfos.length; i < length; i++) {
-              if(whereInfos[i].checked) {
-                whereInfo.push(whereInfos[i].value);
-              }
+                if (whereInfos[i].checked) {
+                    whereInfo.push(whereInfos[i].value);
+                }
             }
             console.log("whereInfo", whereInfo);
 
             let attractionChannel = [];
             let attract = document.getElementsByName('attract');
-            for (let i = 0, length=attract.length; i < length; i++) {
-              if(attract[i].checked) {
-                attractionChannel.push(attract[i].value);
-              }
+            for (let i = 0, length = attract.length; i < length; i++) {
+                if (attract[i].checked) {
+                    attractionChannel.push(attract[i].value);
+                }
             }
             console.log("attractionChannel", attractionChannel);
 
@@ -268,11 +279,18 @@
                 name: name,
                 demoPeriod: demoPeriod
             };
-            console.log("formData", formData, typeof(formData.isPromo));
-            return formData;
-          };
-        });
+            console.log(getJSON(formData));
 
-    </script>
-  </body>
+            let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(getJSON(formData));
+            let dlAnchorElem = document.getElementById('downloadAnchorElem');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", "CJM.json");
+            dlAnchorElem.click();
+
+            return formData;
+        };
+    });
+
+</script>
+</body>
 </html>
