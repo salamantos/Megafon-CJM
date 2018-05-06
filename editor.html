@@ -12,6 +12,13 @@
     <script src="generate_app.js"></script>
 
     <style>
+
+      .custom-file-input ~ .custom-file-label::after {
+        content: "Открыть";
+        height: 100%;
+        padding-top: 25px;
+      }
+
       .header {
         font-size: 1.5em;
         font-weight: bold;
@@ -81,153 +88,186 @@
       .form-check-inline {
         margin: 1em;
       }
+
+
     </style>
   </head>
 
   <body>
-    
-    <div class="d-flex align-items-center flex-row">
-      <img id="title-img" src="megafon_logo.jpg"></img>
-      <h1 id="title-text"></h1>
-    </div>
-    <div class="d-flex flex-row align-items-stretch" id="app">
+
+    <div id="start">
+      <div class="custom-file" style="font-size: 32px">
+        <input type="file" class="custom-file-input" id="exampleInputFile" lang="ru" accept=".json">
+        <label class="custom-file-label" id="btnOpen" for="exampleInputFile" style="height: 120px">Выбрать файл</label>
+      </div>
+      <img src="logo.jpg" style="padding-top: 60px; padding-left: 250px"></div>
     </div>
 
-    <div class="modal" id="title-modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Состояние</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio1" value="Узнаёт">
-                <label class="form-check-label" for="titleRadio1">Узнаёт</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio2" value="Подключает">
-                <label class="form-check-label" for="titleRadio2">Подключает</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio3" value="Подключает/Узнаёт">
-                <label class="form-check-label" for="titleRadio3">Подключает/Узнаёт</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio4" value="Использует">
-                <label class="form-check-label" for="titleRadio4">Использует</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio5" value="Реагирует">
-                <label class="form-check-label" for="titleRadio5">Реагирует</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio6" value="Отключает">
-                <label class="form-check-label" for="titleRadio6">Отключает</label>
-              </div>
-             <div class="form-check">
-                <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio7" value="other">
-                <label class="form-check-label" for="titleRadio7">Свой вариант:</label>
-                <div class="form-group">
-                  <input class="form-control" id="title-input">
+    <div  id="then" style="visibility: hidden">
+      <div class="d-flex align-items-center flex-row">
+        <img id="title-img" src="megafon_logo.jpg"></img>
+        <h1 id="title-text"></h1>
+      </div>
+      <div class="d-flex flex-row align-items-stretch" id="app">
+      </div>
+
+      <div class="modal" id="title-modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Состояние</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio1" value="Узнаёт">
+                  <label class="form-check-label" for="titleRadio1">Узнаёт</label>
                 </div>
-             </div>
-           </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="title-delete" class="btn btn-danger mr-auto" data-dismiss="modal">Удалить</button>
-            <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
-            <button type="button" id="title-button" class="btn btn-dark">Сохранить</button>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio2" value="Подключает">
+                  <label class="form-check-label" for="titleRadio2">Подключает</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio3" value="Подключает/Узнаёт">
+                  <label class="form-check-label" for="titleRadio3">Подключает/Узнаёт</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio4" value="Использует">
+                  <label class="form-check-label" for="titleRadio4">Использует</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio5" value="Реагирует">
+                  <label class="form-check-label" for="titleRadio5">Реагирует</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio6" value="Отключает">
+                  <label class="form-check-label" for="titleRadio6">Отключает</label>
+                </div>
+               <div class="form-check">
+                  <input class="form-check-input" type="radio" name="titleRadios" id="titleRadio7" value="other">
+                  <label class="form-check-label" for="titleRadio7">Свой вариант:</label>
+                  <div class="form-group">
+                    <input class="form-control" id="title-input">
+                  </div>
+               </div>
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="title-delete" class="btn btn-danger mr-auto" data-dismiss="modal">Удалить</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
+              <button type="button" id="title-button" class="btn btn-dark">Сохранить</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal" id="step-modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Шаг</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" 
-                          type="button" 
-                          id="dropdownMenuButton" 
-                          data-toggle="dropdown" 
-                          aria-haspopup="true" 
-                          aria-expanded="false">
-                    Выбрать из готовых..
-                  </button>
-                  <div id="step-options" class="dropdown-menu"i aria-labeledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Action2</a>
+      <div class="modal" id="step-modal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Шаг</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                      Выбрать из готовых..
+                    </button>
+                    <div id="step-options" class="dropdown-menu"i aria-labeledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Action2</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <input class="form-control" id="step-title" placeholder="Название">
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon1" value="fas fa-tag">
-                <label class="form-check-labe l" for="icon1"><i class="fas fa-tag"></i></label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon2" value="far fa-comment-alt">
-                <label class="form-check-label" for="icon2"><i class="far fa-comment-alt"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon3" value="fas fa-cart-arrow-down">
-                <label class="form-check-label" for="icon3"><i class="fas fa-cart-arrow-down"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon4" value="fa fa-mobile-alt">
-                <label class="form-check-label" for="icon4"><i class="fa fa-mobile-alt"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon5" value="far fa-money-bill-alt">
-                <label class="form-check-label" for="icon5"><i class="far fa-money-bill-alt"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon6" value="fas fa-phone">
-                <label class="form-check-label" for="icon6"><i class="fas fa-phone"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon7" value="fas fa-user">
-                <label class="form-check-label" for="icon7"><i class="fas fa-user"></i></label>
-              </div>
-               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="icon" id="icon8" value="fas fa-ban">
-                <label class="form-check-label" for="icon8"><i class="fas fa-ban"></i></label>
-              </div>
-              <div class="form-group">
-                <textarea type="text" class="form-control" id="step-info" placeholder="Общая информация"></textarea>
-              </div>
-              <div class="form-group">
-                <textarea type="text" class="form-control" id="step-sms-info" placeholder="Информация об SMS"></textarea>
-              </div>
-              <div class="form-group">
-                <textarea type="text" class="form-control" id="step-danger" placeholder="Возможные опасности"></textarea>
-              </div>
+                <div class="form-group">
+                  <input class="form-control" id="step-title" placeholder="Название">
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon1" value="fas fa-tag">
+                  <label class="form-check-labe l" for="icon1"><i class="fas fa-tag"></i></label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon2" value="far fa-comment-alt">
+                  <label class="form-check-label" for="icon2"><i class="far fa-comment-alt"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon3" value="fas fa-cart-arrow-down">
+                  <label class="form-check-label" for="icon3"><i class="fas fa-cart-arrow-down"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon4" value="fa fa-mobile-alt">
+                  <label class="form-check-label" for="icon4"><i class="fa fa-mobile-alt"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon5" value="far fa-money-bill-alt">
+                  <label class="form-check-label" for="icon5"><i class="far fa-money-bill-alt"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon6" value="fas fa-phone">
+                  <label class="form-check-label" for="icon6"><i class="fas fa-phone"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon7" value="fas fa-user">
+                  <label class="form-check-label" for="icon7"><i class="fas fa-user"></i></label>
+                </div>
+                 <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="icon" id="icon8" value="fas fa-ban">
+                  <label class="form-check-label" for="icon8"><i class="fas fa-ban"></i></label>
+                </div>
+                <div class="form-group">
+                  <textarea type="text" class="form-control" id="step-info" placeholder="Общая информация"></textarea>
+                </div>
+                <div class="form-group">
+                  <textarea type="text" class="form-control" id="step-sms-info" placeholder="Информация об SMS"></textarea>
+                </div>
+                <div class="form-group">
+                  <textarea type="text" class="form-control" id="step-danger" placeholder="Возможные опасности"></textarea>
+                </div>
 
 
-           </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="step-delete" class="btn btn-danger mr-auto" data-dismiss="modal">Удалить</button>
-            <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
-            <button type="button" id="step-button" class="btn btn-dark">Сохранить</button>
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="step-delete" class="btn btn-danger mr-auto" data-dismiss="modal">Удалить</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
+              <button type="button" id="step-button" class="btn btn-dark">Сохранить</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script>
+      document.getElementById('btnOpen').onclick = function() {
+          if ('FileReader' in window) {
+              document.getElementById('exampleInputFile').click();
+          } else {
+              alert('Your browser does not support the HTML5 FileReader.');
+          }
+      };
+      var apt_body = "";
+      document.getElementById('exampleInputFile').onchange = function(event) {
+          var fileToLoad = event.target.files[0];
+          if (fileToLoad) {
+              var reader = new FileReader();
+              reader.onload = function(fileLoadedEvent) {
+                  var textFromFileLoaded = fileLoadedEvent.target.result;
+                  console.log(textFromFileLoaded);
+              };
+              reader.readAsText(fileToLoad, 'UTF-8');
+          }
+      };
+  </script>
 </html>
