@@ -1,29 +1,9 @@
 var steps = {
     // Подключение услуги по акции
-    shopAttract: {
+    promoAttract: {
         title: "Подключает услугу по акции",
         icon: "fas fa-tag",
         info: "",
-        smsInfo: "",
-        danger: "",
-        cnm: ""
-    },
-
-    // Получение SMS c подтверждением
-    smsConfirm: {
-        title: "Получает SMS с подтверждением",
-        icon: "far fa-comment-alt",
-        info: "SMS с информацией о платной опции приходит чрез X дней после подключения",
-        smsInfo: "",
-        danger: "",
-        cnm: ""
-    },
-
-    // Подключение услуги по тарифу
-    promoAttract: {
-        title: "Подключает новый ТП",
-        icon: "fas fa-cart-arrow-down",
-        info: "Клиент становится участником акции (нулевой профиль на ряде тарифов)",
         smsInfo: "",
         danger: "",
         cnm: ""
@@ -34,6 +14,55 @@ var steps = {
         title: "Получает SMS с описанием опции",
         icon: "far fa-comment-alt",
         info: "SMS с информацией о платной опции приходит через X дней после подключения",
+        smsInfo: "",
+        danger: "",
+        cnm: ""
+    },
+
+
+    // Получение SMS c подтверждением
+    smsPayed: {
+        title: "Получает SMS с подтверждением",
+        icon: "far fa-comment-alt",
+        info: "SMS с информацией о платной опции приходит чрез X дней после подключения",
+        smsInfo: "",
+        danger: "",
+        cnm: ""
+    },
+
+
+    // Подключение услуги по тарифу
+    shopAttract: {
+        title: "Подключает новый ТП",
+        icon: "fas fa-cart-arrow-down",
+        info: "Клиент становится участником акции (нулевой профиль на ряде тарифов)",
+        smsInfo: "",
+        danger: "",
+        cnm: ""
+    },
+
+    adAttract: {
+        title: "Подключает услугу по рекламе",
+        icon: "fas fa-tag",
+        info: "",
+        smsInfo: "",
+        danger: "",
+        cnm: ""
+    },
+
+    operatorCallAttract: {
+        title: "Подключает услугу по звонку оператора",
+        icon: "fas fa-tag",
+        info: "",
+        smsInfo: "",
+        danger: "",
+        cnm: ""
+    },
+
+    smsCallAttract: {
+        title: "Подключает услугу по смс",
+        icon: "fas fa-tag",
+        info: "",
         smsInfo: "",
         danger: "",
         cnm: ""
@@ -61,7 +90,7 @@ var steps = {
     },
 
     // sms об становлении платной
-    smsPayed: {
+    TmpsmsPayed: {
         title: "Услуга становится платной / отключается с заменой на бесплатную",
         icon: "far fa-money-bill-alt",
         info: "",

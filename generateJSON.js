@@ -1,18 +1,10 @@
 function getJSON(params) {
     let columns = [];
-    // Узнает, подключает
-    let attract;
-    let connection;
-    if (params.isPromo) {
-        attract = {name: "Узнаёт", variants: []};
-        connection = {name: "Подключает", variants: []};
 
-
-    } else {
-        attract = {name: "Узнаёт/подключает", variants: []};
-    }
+    let attract = {name: "Узнаёт", variants: []};
+    let connection = {name: "Подключает", variants: []};
     if (params.attractionChannel.includes("shop")) {
-        let temp = templates.shopAttract;
+        /*let temp = steps.shopAttract;
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
@@ -20,31 +12,51 @@ function getJSON(params) {
         if (temp.steps[1].info.indexOf("%") >= 0) {
             temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
         }
-        attract.variants.push(temp);
+        attract.variants.push(temp);*/
     }
+    let sms = steps.smsInfo;
     if (params.isPromo) {
-        let temp = templates.promoAttract;
+        /*-let temp = steps.promoAttract;
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
-        console.log("suka2", temp.steps[1].info, temp.steps[1].info.indexOf("%"));
-        if (temp.steps[1].info.indexOf("%") >= 0) {
-            temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+
+        if (temp.info.indexOf("%") >= 0) {
+            temp.info = temp.info.splice(temp.indexOf("%"), 1, params.demoPeriod);
         }
-        attract.variants.push(temp);
-        attract.variants.push(templates.promoAttract);
-        connection.variants.push(templates.paidConnection);
-        connection.variants.push(templates.notPaidConnection);
+        attract.variants.push(temp);*/
+        sms = steps.smsPayed;
+        let line = [];
+        line.push(steps.promoAttract);
+        line.push(sms);
+        attract.variants.push(line);
+        connection.variants.push(steps.paidConnection);
     }
     if (params.attractionChannel.includes("alreadyInstalled")) {
-        attract.variants.push(templates.alreadyInstalledAttract)
+        let line = [];
+        line.push(steps.shopAttract);
+        line.push(sms);
+        attract.variants.push(line);
     }
     if (params.attractionChannel.includes("ad")) {
-        attract.variants.push(templates.adAttract)
+        let line = [];
+        line.push(steps.adAttract);
+        line.push(sms);
+        attract.variants.push(line);
     }
     if (params.attractionChannel.includes("operatorCall")) {
-        attract.variants.push(templates.operatorCallAttract)
+        let line = [];
+        line.push(steps.operatorCallAttract);
+        line.push(sms);
+        attract.variants.push(line);
     }
+    if (params.attractionChannel.includes("sms")) {
+        let line = [];
+        line.push(steps.operatorCallAttract);
+        line.push(sms);
+        attract.variants.push(line);
+    }
+
     columns.push(attract);
 
     // Использует
@@ -61,13 +73,15 @@ function getJSON(params) {
         whereInfo += "\nв магазине"
     }
     if (params.whereInfo.length > 0) {
-        let temp = templates.waysWhereInfo;
+        let temp = steps.waysWhereInfo;
         temp.info = whereInfo;
         use.variants.push(temp);
 
     }
     if (params.howPaid !== "free") {
-        use.variants.push(templates.days10WhereInfo)
+       // use.variants.push(steps.days10WhereInfo)
+        use.variants.push(steps.smsTime);
+        use.variants.push(steps.smsPayed);
     }
     columns.push(use);
 
@@ -75,9 +89,9 @@ function getJSON(params) {
     let reaction;
     if (params.howPaid !== "free") {
         reaction = {name: "Реакция на изменения", variants: []};
-        reaction.variants.push(templates.variantsPaidReaction);
-        reaction.variants.push(templates.variantsCallReaction);
-        reaction.variants.push(templates.variantsDisableReaction);
+        reaction.variants.push(steps.PaidReaction);
+        reaction.variants.push(steps.CallReaction);
+        reaction.variants.push(steps.DisableReaction);
     }
     columns.push(reaction);
 
