@@ -1,3 +1,16 @@
+function generateInfoStep(stepData) {
+  if (stepData.cnm) {
+    var step = $('<div>', { class: "step d-flex flex-row align-items-center" });
+    var stepBody = $('<div>', { class: "step-body" });
+    stepBody.append($('<h5>', { class: "step-title", text: stepData.title }));
+    stepBody.append($('<div>', { class: "info", text: stepData.cnm }));
+    step.append(stepBody)
+    return step;
+  } else {
+    return null;
+  }
+}
+
 function generateStep(stepData) {
   var step = $('<div>', { class: "step d-flex flex-row align-items-center" });
   var stepBody = $('<div>', { class: "step-body" });
@@ -20,6 +33,10 @@ function generateStep(stepData) {
     stepBody.append($('<div>', { class: "danger", text: stepData.danger }));
   } 
 
+  if (stepData.cnm) {
+    stepBody.append($('<div>', { class: "cnm", text: stepData.cnm, style: "display: none" }));
+  } 
+
   step.append(stepBody);
   var addButton = $('<button>', { class: "btn btn-light plus", text: '+' });
   addButton.click(function(evt) {
@@ -29,8 +46,21 @@ function generateStep(stepData) {
   return step;
 }
 
+function generateInfoVariant(variantData) {
+  var variant = $('<div>', { class: "variant" })
+  var fb = $('<div>', { class: "d-flex flex-row justify-content-around variant-body" })
+  variantData.forEach(function (stepData) {
+    var step = generateInfoStep(stepData);
+    if (step)
+      fb.append(step);
+  });
+  if (fb.children().length) {
+    variant.append(fb);
+    return variant;
+  }
+}
+
 function generateVariant(variantData) {
-  console.log(variantData);
   var variant = $('<div>', { class: "variant" })
   var fb = $('<div>', { class: "d-flex flex-row justify-content-around variant-body" })
   var firstButton = $('<button>', { class: "btn btn-light plus", text: '+' });
@@ -54,6 +84,24 @@ function generateVariant(variantData) {
   return variant;
 }
 
+function generateInfoState(stateData) {
+  var state = $('<div>', { class: "global-step" });
+  var fb = $('<div>', { class: "d-flex flex-row" })
+  fb.append($('<div>', { class: "header", text: stateData.name }));
+  state.append(fb);
+  var variantsDiv = $('<div>', { class: "d-flex justify-content-around flex-column" });
+  stateData.variants.forEach(function (variantData) {
+    var variant = generateInfoVariant(variantData);
+    if (variant)
+      variantsDiv.append(generateInfoVariant(variantData));
+  });
+  if (variantsDiv.children().length) {
+    state.append(variantsDiv);
+    return state;
+  }
+}
+
+
 function generateState(stateData) {
   var state = $('<div>', { class: "global-step" });
   var fb = $('<div>', { class: "d-flex flex-row" })
@@ -75,11 +123,69 @@ function generateState(stateData) {
   return state;
 }
 
+function getSteps(element) {
+  steps = [];
+  element.children().each(function() {
+    var stepBody = $(this).children('.step-body').first()
+    if (stepBody.children('.step-title').text()) {
+      steps.push({
+        title: stepBody.children('.step-title').text(),
+        icon: stepBody.children('.fa').attr('class'),
+        info: stepBody.children('.info').text(),
+        smsInfo: stepBody.children('.smsInfo').text(),
+        danger: stepBody.children('.danger').text(),
+        cnm: stepBody.children('.cnm').text(),
+      });
+    }
+  });
+  return steps;
+}
+
+function getVariants(element) { 
+  variants =  [];
+  element.children().each(function() {
+    variants.push(getSteps($(this).children()))
+  });
+  return variants;
+}
+
+function getStates() {
+  states = [];
+
+  $('.global-step').each(function(i) {
+    var vm = this;
+    states.push({
+      name: $(vm).children().first().children().first().text(),
+      variants: getVariants($(vm).children('.flex-column').first())
+    });
+  })
+  return states;
+}
+
+function generateInfoApp(appData) {
+  appData.name = $('#title-text').text()
+  appData.states = getStates();
+  $('#app').empty();
+  $('#CJM').prop('disabled', false);
+  $('#CNM').prop('disabled', true);
+  $('#title-text').text(appData.name);
+  appData.states.forEach(function (stateData) {
+    $('#app').append(generateInfoState(stateData));
+  });
+}
+
 function generateApp(appData) {
+  $('#app').empty();
+  $('#CJM').prop('disabled', true);
+  $('#CNM').prop('disabled', false);
   $('#title-text').text(appData.name);
   appData.states.forEach(function (stateData) {
     $('#app').append(generateState(stateData));
   });
+  $('.header').click(function(evt) {
+    updateHeader(evt.target);
+  });
+
 }
 
 function getHeaderValue() {
@@ -181,14 +287,25 @@ function deleteState(evt) {
   $(evt.target).parent().remove();
 }
 
-var appData = {"states":[{"name":"Узнаёт","variants":[[{"title":"Подключает новый Тарифный План","icon":"fas fa-cart-arrow-down","info":"Опция предустановлена на определенных тарифах","smsInfo":"","danger":"","cnm":"Новый тарифный план активирован! Абонентская плата 299 рублей/месяц. Пакеты услуг смотрите в личном кабинете"},{"title":"Получает уведомление об опции","icon":"far fa-comment-alt","info":"SMS с информацией о подключенной опции и ее условиях","smsInfo":"","danger":"","cnm":""}],[{"title":"Подключает в магазине","icon":"fas fa-cart-arrow-down","info":"Клиенту предлагает поставить услугу продавец","smsInfo":"","danger":"","cnm":""},{"title":"Получает уведомление об опции","icon":"far fa-comment-alt","info":"SMS с информацией о подключенной опции и ее условиях","smsInfo":"","danger":"","cnm":""}]]},{"name":"Подключает","variants":[[{"title":"Подключает услугу","icon":"far fa-money-bill-alt","info":"Подключение возможно\nв личном кабинете\nв коллцентре\nв магазине","smsInfo":"","danger":"","cnm":"Спасибо за то, что решили пользоваться услугой"}]]},{"name":"Использует","variants":[[{"title":"Управляет услугой","icon":"fas fa-user","info":"Управление возможно в следующих местах: \nв личном кабинете","smsInfo":"","danger":"","cnm":"Спасибо за то, что решили и дальше пользоваться бесплатной услугой"}],[{"title":"За 10 дней получает SMS уведомление","icon":"far fa-comment-alt","info":"SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»","smsInfo":"SMS с уведомлением об окончании акции и информацией об условиях опции","danger":"","cnm":"Несколько дней назад вы подключили платную услугу. Пробный период заканчивается через X дней. Если хотите отключить услугу, вы можете сделать это в личном кабинете"},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит через X дней после подключения","smsInfo":"","danger":"","cnm":""}]]},{"name":"Реакция на изменения","variants":[[{"title":"Оставляет платную услугу","icon":"far fa-money-bill-alt","info":"","smsInfo":"SMS с подтверждением окончания акции","danger":"","cnm":"Спасибо за то, что остаись с нами и решили продолжить пользоваться услугой"}],[{"title":"Звонит в КЦ","icon":"fas fa-phone","info":"","smsInfo":"","danger":"Негативные реакции, если абонент забыл отключить опцию до окончания акции","cnm":""}],[{"title":"Отключает пакет","icon":"fas fa-ban","info":"Отключение возможно через Личный кабинет, контактный центр, по команде","smsInfo":"Сказать, что будем рады видеть еще","danger":"","cnm":"Нам жаль, что вы решили отключить нашу услугу. Мы будем работать над ее улучшением и надеемся, что вы когда-нибудь подключите ее снова"}]]},{"name":"Отключает","variants":[[{"title":"Отключает пакет","icon":"fas fa-ban","info":"Отключение возможно\nв личном кабинете\nв коллцентре\nв магазине","smsInfo":"SMS с подтверждением отключения","danger":"Клиент чем-то недоволен","cnm":"Пакет был отключен. Подробная информация в личном кабинете"}]]}],"name":"Услуга-Хуюга"}
+var appData = {"states":[{"name":"Узнаёт","variants":[[{"title":"Подключает услугу по акции","icon":"fas fa-tag","info":"","smsInfo":"","danger":"","cnm":""},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит чрез X дней после подключения","smsInfo":"","danger":"","cnm":""}],[{"title":"Подключает новый ТП","icon":"fas fa-cart-arrow-down","info":"Клиент становится участником акции (нулевой профиль на ряде тарифов)","smsInfo":"Краткая информация по тарифному плану","danger":"","cnm":"Новый тарифный план активирован! Абонентская плата 299 рублей/месяц. Пакеты услуг смотрите в личном кабинете"},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит чрез X дней после подключения","smsInfo":"","danger":"","cnm":""}],[{"title":"Подключает услугу по звонку оператора","icon":"fas fa-tag","info":"","smsInfo":"","danger":"","cnm":""},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит чрез X дней после подключения","smsInfo":"","danger":"","cnm":""}]]},{"name":"Использует","variants":[{"title":"Управляет услугой","icon":"fas fa-user","info":"Управление возможно в следующих местах: \nв личном кабинете\nв коллцентре\nв магазине","smsInfo":"","danger":"","cnm":"Спасибо за то, что решили и дальше пользоваться бесплатной услугой"},{"title":"За 10 дней получает SMS уведомление","icon":"far fa-comment-alt","info":"SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»","smsInfo":"SMS с уведомлением об окончании акции и информацией об условиях опции","danger":"","cnm":"Несколько дней назад вы подключили платную услугу. Пробный период заканчивается через X дней. Если хотите отключить услугу, вы можете сделать это в личном кабинете"},{"title":"Получает SMS с подтверждением","icon":"far fa-comment-alt","info":"SMS с информацией о платной опции приходит чрез X дней после подключения","smsInfo":"","danger":"","cnm":""}]},{"name":"Реакция на изменения","variants":[{"title":"Оставляет платную услугу","icon":"far fa-money-bill-alt","info":"","smsInfo":"SMS с подтверждением окончания акции","danger":"","cnm":"Спасибо за то, что остаись с нами и решили продолжить пользоваться услугой"},{"title":"Звонит в КЦ","icon":"fas fa-phone","info":"","smsInfo":"","danger":"Негативные реакции, если абонент забыл отключить опцию до окончания акции","cnm":""},{"title":"Отключает пакет","icon":"fas fa-ban","info":"Отключение возможно через Личный кабинет, контактный центр, по команде","smsInfo":"Сказать, что будем рады видеть еще","danger":"","cnm":"Нам жаль, что вы решили отключить нашу услугу. Мы будем работать над ее улучшением и надеемся, что вы когда-нибудь подключите ее снова"}]}],"name":"Кто звонил+++"}
 
 
 $('document').ready(function() {
   generateApp(appData);
+  $('#CJM').click(function () { generateApp(appData) })
+  $('#CNM').click(function () { generateInfoApp(appData) })
   $('.header').click(function(evt) {
     updateHeader(evt.target);
   });
+  $('#download').click(function(evt) {
+    $('#title-text').text(appData.name);
+    appData.states.forEach(function (stateData) {
+      $('#app').append(generateInfoState(stateData));
+    });
+    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+    this.setAttribute("href", 'data:' + data + ' download="maps.json"');
+  });
+ 
   $.each(steps, function(index, value) {
     var option = $('<a>', { class: 'dropdown-item', href: '#', text: value.title });
     option.click(function() {
