@@ -291,31 +291,56 @@ var appData = {"states":[{"name":"Узнаёт","variants":[[{"title":"Подк�
 
 
 $('document').ready(function() {
-  generateApp(appData);
-  $('#CJM').click(function () { generateApp(appData) })
-  $('#CNM').click(function () { generateInfoApp(appData) })
-  $('.header').click(function(evt) {
-    updateHeader(evt.target);
-  });
-  $('#download').click(function(evt) {
-    $('#title-text').text(appData.name);
-    appData.states.forEach(function (stateData) {
-      $('#app').append(generateInfoState(stateData));
-    });
-    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
-    this.setAttribute("href", 'data:' + data + ' download="maps.json"');
-  });
- 
-  $.each(steps, function(index, value) {
-    var option = $('<a>', { class: 'dropdown-item', href: '#', text: value.title });
-    option.click(function() {
-      $('#step-title').val(value.title);
-      $('#step-info').val(value.info);
-      $('#step-sms-info').val(value.smsInfo);
-      $('#step-danger').val(value.danger);
-      $('[name="icon"]').removeAttr('checked');
-      $("input[name=icon][value='" + value.icon + "']").prop('checked', true);
-    });
-    $('#step-options').append(option);
-  });
+      document.getElementById('btnOpen').onclick = function() {
+          if ('FileReader' in window) {
+              //document.getElementById('exampleInputFile').click();
+          } else {
+              alert('Your browser does not support the HTML5 FileReader.');
+          }
+      };
+      var apt_body = "";
+      document.getElementById('exampleInputFile').onchange = function(event) {
+          var fileToLoad = event.target.files[0];
+          if (fileToLoad) {
+              var reader = new FileReader();
+              reader.onload = function(fileLoadedEvent) {
+                  var textFromFileLoaded = fileLoadedEvent.target.result;
+                  console.log(textFromFileLoaded);
+                  $('#start').remove();
+                  $('#then').css('visibility', 'visible');
+                  appData = JSON.parse(textFromFileLoaded);
+                  console.log(appData);
+                  generateApp(appData);
+                  $('#CJM').click(function () { generateApp(appData) })
+                  $('#CNM').click(function () { generateInfoApp(appData) })
+                  $('.header').click(function(evt) {
+                    updateHeader(evt.target);
+                  });
+                  $('#download').click(function(evt) {
+                    $('#title-text').text(appData.name);
+                    appData.states.forEach(function (stateData) {
+                      $('#app').append(generateInfoState(stateData));
+                    });
+                    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+                    this.setAttribute("href", 'data:' + data + ' download="maps.json"');
+                  });
+                 
+                  $.each(steps, function(index, value) {
+                    var option = $('<a>', { class: 'dropdown-item', href: '#', text: value.title });
+                    option.click(function() {
+                      $('#step-title').val(value.title);
+                      $('#step-info').val(value.info);
+                      $('#step-sms-info').val(value.smsInfo);
+                      $('#step-danger').val(value.danger);
+                      $('[name="icon"]').removeAttr('checked');
+                      $("input[name=icon][value='" + value.icon + "']").prop('checked', true);
+                    });
+                    $('#step-options').append(option);
+                  });
+              };
+              reader.readAsText(fileToLoad, 'UTF-8');
+          }
+      };
+
+
 });
