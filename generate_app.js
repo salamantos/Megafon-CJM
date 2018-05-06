@@ -2,7 +2,7 @@ function generateStep(stepData) {
   var step = $('<div>', { class: "step d-flex flex-row align-items-center" });
   var stepBody = $('<div>', { class: "step-body" });
   stepBody.append($('<h5>', { class: "step-title", text: stepData.title }));
-  stepBody.append($('<div>', { class: stepData.icon }));
+  stepBody.append($('<div>', { class: 'fa ' + stepData.icon }));
   stepBody.on("click", function(evt) {
     updateStep(this);
   });
@@ -21,9 +21,9 @@ function generateStep(stepData) {
   } 
 
   step.append(stepBody);
-  var addButton = $('<button>', { class: "btn btn-light", text: '+'});
+  var addButton = $('<button>', { class: "btn btn-light plus", text: '+' });
   addButton.click(function(evt) {
-    addNewStep($(this).parent());
+    addNewStep(step);
   });
   step.append(addButton);
   return step;
@@ -31,10 +31,26 @@ function generateStep(stepData) {
 
 function generateVariant(variantData) {
   console.log(variantData);
-  var variant = $('<div>', { class: "d-flex flex-row align-items-center variant" })
-  variantData.forEach(function (stepData) {
-    variant.append(generateStep(stepData));
+  var variant = $('<div>', { class: "variant" })
+  var fb = $('<div>', { class: "d-flex flex-row justify-content-around variant-body" })
+  var firstButton = $('<button>', { class: "btn btn-light plus", text: '+' });
+  firstButton.click(function(evt) {
+    addNewStep(firstButton);
   });
+  fb.append(firstButton);
+
+  variant.append(fb);
+  variantData.forEach(function (stepData) {
+    fb.append(generateStep(stepData));
+  });
+  var addBtn = $('<button>', { class: "ml-auto mr-auto btn plus btn-light", text: '+' , style: "margin-top: 1em" })
+  addBtn.click(function(evt) {
+    addNewVariant(variant);
+  });
+  variant.append(addBtn);
+  var deleteButton = $('<button>', { class: "btn btn-outline-danger", text: 'x', style: "margin-top: 1em; margin-left: 1em;"})
+  deleteButton.click(function () { variant.remove() });
+  variant.append(deleteButton);
   return variant;
 }
 
@@ -42,10 +58,16 @@ function generateState(stateData) {
   var state = $('<div>', { class: "global-step" });
   var fb = $('<div>', { class: "d-flex flex-row" })
   fb.append($('<div>', { class: "header", text: stateData.name }));
-  var addBtn = $('<button>', { class: "btn btn-light mr-auto", text: '+', click: addState, style: "display: inline-block" })
+  var addBtn = $('<button>', { class: "btn plus btn-light mr-auto", click: addState, text: '+', style: "display: inline-block" })
   fb.append(addBtn);
   state.append(fb);
   var variantsDiv = $('<div>', { class: "d-flex justify-content-around flex-column" });
+  var firstBtn = $('<button>', { class: "mr-auto  btn plus btn-light", text: '+' , style: "margin-top: 1em" })
+  firstBtn.click(function(evt) {
+    addNewVariant(firstBtn);
+  });
+  state.append(firstBtn);
+
   stateData.variants.forEach(function (variantData) {
     variantsDiv.append(generateVariant(variantData));
   });
@@ -116,7 +138,6 @@ function updateStep(step) {
 }
 
 function addStep(parentElement) {
-  console.log(parentElement);
   var stepData = {
     title: $('#step-title').val(),
     icon: $('input[name="icon"]:checked').val(),
@@ -128,13 +149,18 @@ function addStep(parentElement) {
   parentElement.after(generateStep(stepData));
 }
 
-function addNewStep() {
+function addNewStep(parentElement) {
   var stepData = {
     title: "Test",
     info: "info info info"
   }
-  step = generateStep(stepData);
-  addNewStep(step);
+  parentElement.after(generateStep(stepData));
+  updateStep(parentElement.next().children('.step-body').first()[0]);
+}
+
+function addNewVariant(parentElement) {
+  var variantData = [];
+  parentElement.after(generateVariant(variantData));
 }
 
 function addState(evt) {
