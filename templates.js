@@ -1,157 +1,142 @@
-var templates = {
+var steps= {
+    // Подключение услуги по акции
     shopAttract: {
-        hash: "shopAttract",
-        steps: [
-            {
-                id: "1",
                 title: "Подключает услугу по акции",
                 icon: "fas fa-tag",
-            },
-            {
-                id: "2",
-                title: "Получает SMS с подтверждением",
-                icon: "far fa-comment-alt",
-                info: "SMS с информацией о платной опции приходит чрез X дней после подключения"
-            },
-        ]
+                info:"",
+                smsInfo:"",
+                danger:"",
+                cnm:""
     },
 
+    // Получение SMS c подтверждением
+    smsConfirm {
+        title: "Получает SMS с подтверждением",
+        icon: "far fa-comment-alt",
+        info: "SMS с информацией о платной опции приходит чрез X дней после подключения",
+        smsInfo:"",
+        danger:"",
+        cnm:""
+    },
+
+    // Подключение услуги по тарифу
     promoAttract: {
-        hash: "promoAttract",
-        steps: [
-            {
-                id: "3",
                 title: "Подключает новый ТП",
                 icon: "fas fa-cart-arrow-down",
-                info: "Клиент становится участником акции (нулевой профиль на ряде тарифов)"
-            },
-            {
-                id: "4",
-                title: "Получает SMS с описанием опции",
-                icon: "far fa-comment-alt",
-                info: "SMS с информацией о платной опции приходит чрез X дней после подключения"
-            },
-        ]
+                info: "Клиент становится участником акции (нулевой профиль на ряде тарифов)",
+                smsInfo: "",
+                danger: "",
+                cnm: ""
     },
+
+    // Получение информации об опции по смс
+    smsInfo {
+      title: "Получает SMS с описанием опции",
+      icon: "far fa-comment-alt",
+      info: "SMS с информацией о платной опции приходит через X дней после подключения",
+      smsInfo: "",
+      danger: "",
+      cnm: ""
+    },
+
+    // Использование услуги по акции
     paidConnection: {
-        hash: "paidConnection",
-        steps: [
-            {
-                id: "1",
                 title: "Пользуется опцией",
                 icon: "fa fa-mobile-alt",
                 info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            },
-            {
-                id: "2",
-                title: "За 10 дней получает SMS уведомление",
-                icon: "far fa-comment-alt",
-                smsInfo: "SMS с уведомлением об окончании акции и информацией об условиях опции",
-                info: "SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»",
-            },
-            {
-                id: "3",
-                title: "Услуга становится платной / отключается с заменой на бесплатную",
-                icon: "far fa-money-bill-alt",
-                danger: "За 10 дней абоненты могут забыть об окончании акции. Рекомендуется еще раз уведомить абонента в день окончания акции",
-            },
-        ]
+                smsInfo: "",
+                danger: "",
+                cnm: ""
     },
-    notPaidConnection: {
-        hash: "notPaidConnection",
-        steps: [
-            {
-                id: "1",
-                title: "НАВАЛЬНЫЙ",
-                icon: "fa fa-mobile-alt",
-                info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            }
-        ]
+
+    // sms об отключении
+    smsTime {
+        title: "За 10 дней получает SMS уведомление",
+        icon: "far fa-comment-alt",
+        info: "SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»",
+        smsInfo: "SMS с уведомлением об окончании акции и информацией об условиях опции",
+        danger: "",
+        cnm: ""
     },
-    alreadyInstalledAttract: {
-        hash: "alreadyInstalledAttract",
+
+    // sms об становлении платной
+    smsPayed {
+        title: "Услуга становится платной / отключается с заменой на бесплатную",
+        icon: "far fa-money-bill-alt",
+        info: "",
+        smsInfo: "",
+        danger: "За 10 дней абоненты могут забыть об окончании акции. Рекомендуется еще раз уведомить абонента в день окончания акции",
+        cnm: ""
     },
-    adAttract: {
-        hash: "adAttract",
-        steps: [
-            {
-                id: "1",
-                title: "НАВАЛЬНЫЙ",
-                icon: "fa fa-mobile-alt",
-                info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            }
-        ]
-    },
-    operatorCallAttract: {
-        hash: "operatorCallAttract",
-        steps: [
-            {
-                id: "1",
-                title: "НАВАЛЬНЫЙ",
-                icon: "fa fa-mobile-alt",
-                info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            }
-        ]
-    },
-    waysWhereInfo: {
-        hash: "waysWhereInfo",
-        waysWhereInfo: []
-    },
-    days10WhereInfo: {
-        hash: "days10WhereInfo",
-        steps: [
-            {
-                id: "1",
-                title: "Пользуется опцией",
-                icon: "fa fa-mobile-alt",
-                info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
-            },
-            {
-                id: "2",
-                title: "За 10 дней получает SMS уведомление",
-                icon: "far fa-comment-alt",
-                smsInfo: "SMS с уведомлением об окончании акции и информацией об условиях опции",
-                info: "SMS с информацией об окончании срока действия акции. Так же текст может включать информацию о подключенной опии «Мне Звонили S»",
-            },
-            {
-                id: "3",
-                title: "Услуга становится платной / отключается с заменой на бесплатную",
-                icon: "far fa-money-bill-alt",
-                danger: "За 10 дней абоненты могут забыть об окончании акции. Рекомендуется еще раз уведомить абонента в день окончания акции",
-            },
-        ]
-    },
-    variantsPaidReaction: {
-        hash: "variantsPaidReaction",
-        steps: [
-            {
-                id: "1",
+
+    // Платит за услугу
+    PaidReaction: {
                 title: "Оставляет платную услугу",
                 icon: "far fa-money-bill-alt",
+                info: "",
                 smsInfo: "SMS с подтверждением окончания акции",
-            },
-        ]
+                danger: "",
+                cnm: ""
     },
-    variantsCallReaction: {
-        hash: "variantsCallReaction",
-        steps: [
-            {
-                id: "2",
+
+    // Звонит в КЦ
+    CallReaction: {
                 title: "Звонит в КЦ",
                 icon: "fas fa-phone",
+                info: "",
+                smsInfo: "",
                 danger: "Негативные реакции, если абонент забыл отключить опцию до окончания акции",
-            },
-        ]
+                cnm: ""
     },
-    variantsDisableReaction: {
-        hash: "variantsDisableReaction",
-        steps: [
-            {
-                id: "3",
+
+    // Отключает услугу
+    DisableReaction: {
                 title: "Отключает пакет",
                 icon: "fas fa-ban",
                 info: "Отключение возможно через Личный кабинет, контактный центр, по команде",
-            },
-        ]
+                smsInfo: "",
+                danger: "",
+                cnm: ""
+    },
+
+    // Подключить платную функцию
+    payedFunc {
+      title: "Подключает платную услугу",
+      icon: "far fa-money-bill-alt",
+      info: "Подключение возможно по короткому номеру и по ссылке",
+      smsInfo: "",
+      danger: "",
+      cnm: ""
+    }
+
+    // Оставляет бесплатную услугу
+    stayedFree {
+      title: "Оставляет бесплатную услугу",
+      icon: "far fa-money-bill-alt",
+      info: "",
+      smsInfo: "",
+      danger: "",
+      cnm: ""
+    }
+
+    // Управление услугой
+    waysWhereInfo: {
+      title: "Управляет услугой",
+      icon: "fas fa-user",
+      info: "Информация об услуге отображается в Личном кабинете. Управление услугой: Личный кабинет, *111#,f2f-каналы",
+      smsInfo: "",
+      danger: "",
+      cnm: ""
+    },
+
+
+    // Выключить функцию
+    disableFunc {
+      title: "Отключает пакет",
+      icon: "fas fa-ban",
+      info: "Отключение возможно через Личный кабинет, контактный центр, каналы самообслуживания",
+      smsInfo: "SMS с подтверждением отключения",
+      danger: "",
+      cnm: ""
     }
 };
