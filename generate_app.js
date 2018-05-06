@@ -318,12 +318,18 @@ $('document').ready(function() {
                     updateHeader(evt.target);
                   });
                   $('#download').click(function(evt) {
-                    $('#title-text').text(appData.name);
-                    appData.states.forEach(function (stateData) {
-                      $('#app').append(generateInfoState(stateData));
-                    });
-                    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
-                    this.setAttribute("href", 'data:' + data + ' download="maps.json"');
+                      appData.name = $('#title-text').text()
+  appData.states = getStates();
+
+                    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+            let dlAnchorElem = document.getElementById('downloadAnchorElem');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", "CJM.json");
+            dlAnchorElem.click();
+
+
+                    //var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+                    //this.setAttribute("href", 'data:' + data + ' download="maps.json"');
                   });
                  
                   $.each(steps, function(index, value) {
