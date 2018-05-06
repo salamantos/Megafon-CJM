@@ -103,7 +103,15 @@ var templates = {
     },
     waysWhereInfo: {
         hash: "waysWhereInfo",
-        waysWhereInfo: []
+        waysWhereInfo: [],
+        steps: [
+            {
+                id: "2",
+                title: "Управление услугой",
+                icon: "fa fa-mobile-alt",
+                info: "",
+            }
+        ]
     },
     days10WhereInfo: {
         hash: "days10WhereInfo",

@@ -16,15 +16,22 @@ function getJSON(params) {
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
-        let teperer = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        console.log("suka1", temp.steps[1].info, temp.steps[1].info.indexOf("%"));
+        if (temp.steps[1].info.indexOf("%") >= 0) {
+            temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        }
+        attract.variants.push(temp);
     }
     if (params.isPromo) {
         let temp = templates.promoAttract;
         String.prototype.splice = function (idx, rem, str) {
             return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
         };
-        let teperer = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
-        attract.variants.push(teperer);
+        console.log("suka2", temp.steps[1].info, temp.steps[1].info.indexOf("%"));
+        if (temp.steps[1].info.indexOf("%") >= 0) {
+            temp.steps[1].info = temp.steps[1].info.splice(temp.steps[1].info.indexOf("%"), 1, params.demoPeriod);
+        }
+        attract.variants.push(temp);
         attract.variants.push(templates.promoAttract);
         connection.variants.push(templates.paidConnection);
         connection.variants.push(templates.notPaidConnection);
@@ -43,18 +50,21 @@ function getJSON(params) {
     // Использует
     let use;
     use = {name: "Использует", variants: []};
-    let whereInfo = "";
+    let whereInfo = "Управление возможно в следующих местах: ";
     if (params.whereInfo.includes("lk")) {
-        whereInfo += "в личном кабинете"
+        whereInfo += "\nв личном кабинете"
     }
     if (params.whereInfo.includes("callCenter")) {
-        whereInfo += "в коллцентре"
+        whereInfo += "\nв коллцентре"
     }
     if (params.whereInfo.includes("shop")) {
-        whereInfo += "в магазине"
+        whereInfo += "\nв магазине"
     }
     if (params.whereInfo.length > 0) {
-        use.variants.push({waysWhereInfo: whereInfo})
+        let temp = templates.waysWhereInfo;
+        temp.steps[0].info = whereInfo;
+        use.variants.push(temp);
+
     }
     if (params.howPaid !== "free") {
         use.variants.push(templates.days10WhereInfo)

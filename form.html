@@ -28,7 +28,7 @@
                     <label for="which-dog">Сколько дней действует акция?</label>
                     <input id="days" class="form-control" style="margin-top: 0" type="text" id="which-dog"
                            name="which-dog" class="require-if-active" data-require-pair="#choice-animals-dogs"
-                           value="0">
+                           value="30">
                 </div>
             </label>
         </div>
@@ -280,7 +280,6 @@
                 name: name,
                 demoPeriod: demoPeriod
             };
-            console.log(getJSON(formData));
 
             let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(getJSON(formData));
             let dlAnchorElem = document.getElementById('downloadAnchorElem');
