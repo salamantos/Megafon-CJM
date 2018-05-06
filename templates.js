@@ -70,6 +70,14 @@ var templates = {
     },
     alreadyInstalledAttract: {
         hash: "alreadyInstalledAttract",
+        steps: [
+            {
+                id: "1",
+                title: "НАВАЛЬНЫЙ",
+                icon: "fa fa-mobile-alt",
+                info: "Отключение возможно через Личный кабинет, контактный центр, *111#",
+            }
+        ]
     },
     adAttract: {
         hash: "adAttract",

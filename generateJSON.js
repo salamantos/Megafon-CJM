@@ -1,34 +1,38 @@
 function getJSON(params) {
-    let columns = {};
+    let columns = [];
     // Узнает, подключает
+    let attract;
+    let connection;
     if (params.isPromo) {
-        columns.attract = {name: "Узнаёт", variants: []};
-        columns.connection = {name: "Подключает", variants: []};
+        attract = {name: "Узнаёт", variants: []};
+        connection = {name: "Подключает", variants: []};
 
 
     } else {
-        columns.attract = {name: "Узнаёт/подключает", variants: []};
+        attract = {name: "Узнаёт/подключает", variants: []};
     }
     if (params.attractionChannel.includes("shop")) {
-        columns.attract.variants.push(templates.shopAttract)
+        attract.variants.push(templates.shopAttract)
     }
     if (params.isPromo) {
-        columns.attract.variants.push(templates.promoAttract);
-        columns.connection.variants.push(templates.paidConnection);
-        columns.connection.variants.push(templates.notPaidConnection);
+        attract.variants.push(templates.promoAttract);
+        connection.variants.push(templates.paidConnection);
+        connection.variants.push(templates.notPaidConnection);
     }
     if (params.attractionChannel.includes("alreadyInstalled")) {
-        columns.attract.variants.push(templates.alreadyInstalledAttract)
+        attract.variants.push(templates.alreadyInstalledAttract)
     }
     if (params.attractionChannel.includes("ad")) {
-        columns.attract.variants.push(templates.adAttract)
+        attract.variants.push(templates.adAttract)
     }
     if (params.attractionChannel.includes("operatorCall")) {
-        columns.attract.variants.push(templates.operatorCallAttract)
+        attract.variants.push(templates.operatorCallAttract)
     }
+    columns.push(attract);
 
     // Использует
-    columns.use = {name: "Использует", variants: []};
+    let use;
+    use = {name: "Использует", variants: []};
     let whereInfo = "";
     if (params.whereInfo.includes("lk")) {
         whereInfo += "в личном кабинете"
@@ -40,28 +44,31 @@ function getJSON(params) {
         whereInfo += "в магазине"
     }
     if (params.whereInfo.length > 0) {
-        columns.use.variants.push({waysWhereInfo: whereInfo})
+        use.variants.push({waysWhereInfo: whereInfo})
     }
     if (params.howPaid !== "free") {
-        columns.use.variants.push(templates.days10WhereInfo)
+        use.variants.push(templates.days10WhereInfo)
     }
+    columns.push(use);
 
     // Реакция на изменения
+    let reaction;
     if (params.howPaid !== "free") {
-        columns.reaction = {name: "Реакция на изменения", variants: []};
-        columns.reaction.variants.push(templates.variantsPaidReaction);
-        columns.reaction.variants.push(templates.variantsCallReaction);
-        columns.reaction.variants.push(templates.variantsDisableReaction);
+        reaction = {name: "Реакция на изменения", variants: []};
+        reaction.variants.push(templates.variantsPaidReaction);
+        reaction.variants.push(templates.variantsCallReaction);
+        reaction.variants.push(templates.variantsDisableReaction);
     }
+    columns.push(reaction);
 
     // Отключает
     columns.disconnect = {name: "Отключает", variants: []};
 
+    columns = {"states": columns, name: params.name};
     return JSON.stringify(columns);
 }
 
-
-
+// Пример входящих данных
 let formData = {
     howPaid: "monthly",
     isPromo: true,
@@ -80,5 +87,3 @@ let formData = {
     name: "Some name",
     demoPeriod: 30
 };
-
-console.log(getJSON(formData));
